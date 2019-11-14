@@ -103,5 +103,16 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+# Virtual Env1
+Scripts/
+
+# PyCharm stuff
+.idea/
+Include/
+tcl/
+
+# VSCode
+.vscode/
+
 #api key
 config.py
