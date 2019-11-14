@@ -1,4 +1,10 @@
-#Setup Virtual Env
-virtualenv .env && source .env/bin/activate && pip install -r requirements.txt
+#Currency Tracker Project
 
-create config.py in root folder to store sensitive information such as API keys and DB info 
+Recommended Python version : 3.8.x
+
+#Setup Virtual Env
+
+virtualenv .env && source .env/bin/activate && pip install -r requirements.txt
+ 
+
+
