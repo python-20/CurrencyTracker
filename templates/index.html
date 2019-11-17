@@ -1,17 +1,19 @@
-{% extends 'base.html' %}{% block head %}
+{% extends 'base.html' %}
+
+{% block head %}
 <title>Currency Converter/Tracker</title>
-{% block body %}
 {% endblock %}
 
-<select name="fromcurrency" method="GET" action="/">
-    {% for rate in rates %}
-    <option value="{{rate}}">{{rate}}</option>
+{% block body %}
+<select name="fromCurrency" method="GET" action="/">
+    {% for code in currencyCodes %}
+    <option value="{{code}}">{{code}}</option>
     {% endfor %}
 </select>
 to
-<select name="tocurrency" method="GET" action="/">
-    {% for rate in rates %}
-    <option value="{{rate}}">{{rate}}</option>
+<select name="toCurrency" method="GET" action="/">
+    {% for code in currencyCodes %}
+    <option value="{{code}}">{{code}}</option>
     {% endfor %}
 </select>
 

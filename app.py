@@ -20,7 +20,7 @@ def index():
     app.logger.info(
         f"{fromCurrency} to {toCurrency} = {conversion(1,request['rates'][fromCurrency],request['rates'][toCurrency])}")
 
-    return render_template('index.html', rates=request['rates'].keys())
+    return render_template('index.html', currencyCodes=sorted(request['rates'].keys()))
 
 
 def conversion(amount, fromCurrency, toCurrency):
