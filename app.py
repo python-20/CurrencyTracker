@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import requests
 
 # import config
@@ -6,32 +6,28 @@ import requests
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
+json_request = requests.get(
+    'https://api.exchangeratesapi.io/latest').json()
+currencyCodes = sorted(json_request['rates'].keys())
 
-@app.route('/')
+
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index.html')
 def index():
-    request = requests.get('https://api.exchangeratesapi.io/latest').json()
 
-    # show json string in log
-    app.logger.info(request)
-
-    # test conversion function
-    fromCurrency = 'USD'
-    toCurrency = 'AUD'
-    app.logger.info(
-        f"{fromCurrency} to {toCurrency} = {conversion(1,request['rates'][fromCurrency],request['rates'][toCurrency])}")
-
-    return render_template('index.html', currencyCodes=sorted(request['rates'].keys()))
+    if request.method == 'POST':
+        amount = float(request.form['amount'])
+        fromCurrency = request.form['fromCurrency']
+        toCurrency = request.form['toCurrency']
+        resultString = f"{amount} {fromCurrency} = {conversion(amount,json_request['rates'][fromCurrency],json_request['rates'][toCurrency])} {toCurrency} "
+        return render_template('index.html', currencyCodes=currencyCodes, conversionResult=resultString)
+    else:
+        return render_template('index.html', currencyCodes=currencyCodes)
 
 
 def conversion(amount, fromCurrency, toCurrency):
-    return round(amount * fromCurrency/toCurrency, 3)
+    return round(amount * (toCurrency/fromCurrency), 3)
 
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-@app.route('/', methods=['POST'])
-def index_post():
-    amount = request.form['amount']
-    return amount
