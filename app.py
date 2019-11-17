@@ -14,29 +14,17 @@ def index():
     # show json string in log
     app.logger.info(request)
 
-    # test block
-    rates = {
-        'base': request['base'],
-        'date': request['date'],
-        'AUD': request['rates']['AUD'],
-        'USD': request['rates']['USD']
-    }
-
-    app.logger.info(rates)
-    # end test block
-
     # test conversion function
     fromCurrency = 'USD'
     toCurrency = 'AUD'
     app.logger.info(
-        f"{fromCurrency} to {toCurrency} = {conversion(1,rates[fromCurrency],rates[toCurrency])}")
+        f"{fromCurrency} to {toCurrency} = {conversion(1,request['rates'][fromCurrency],request['rates'][toCurrency])}")
 
-    return render_template('index.html', rates = request['rates'])
+    return render_template('index.html', rates=request['rates'].keys())
 
 
 def conversion(amount, fromCurrency, toCurrency):
     return round(amount * fromCurrency/toCurrency, 3)
-
 
 
 if __name__ == "__main__":
