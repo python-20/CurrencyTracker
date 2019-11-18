@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import requests
-from ctfunctions import *
+from ctfunctions import get_currencyCodes, conversion
 
 # import config
 
