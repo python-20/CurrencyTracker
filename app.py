@@ -8,7 +8,9 @@ app.config['DEBUG'] = True
 
 json_request = requests.get(
     'https://api.exchangeratesapi.io/latest').json()
-currencyCodes = sorted(json_request['rates'].keys())
+currencyCodes = [c for c in json_request['rates'].keys()]
+currencyCodes.append(json_request['base'])
+currencyCodes = sorted(currencyCodes)
 
 
 @app.route('/', methods=['GET', 'POST'])
