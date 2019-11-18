@@ -1,16 +1,11 @@
 from flask import Flask, render_template, request
 import requests
+from ctfunctions import *
 
 # import config
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-
-json_request = requests.get(
-    'https://api.exchangeratesapi.io/latest').json()
-currencyCodes = [c for c in json_request['rates'].keys()]
-currencyCodes.append(json_request['base'])
-currencyCodes = sorted(currencyCodes)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -21,14 +16,11 @@ def index():
         amount = float(request.form['amount'])
         fromCurrency = request.form['fromCurrency']
         toCurrency = request.form['toCurrency']
-        resultString = f"{amount} {fromCurrency} = {conversion(amount,json_request['rates'][fromCurrency],json_request['rates'][toCurrency])} {toCurrency} "
-        return render_template('index.html', currencyCodes=currencyCodes, conversionResult=resultString)
+
+        resultString = f"{amount} {fromCurrency} = {conversion(amount,fromCurrency,toCurrency)} {toCurrency} "
+        return render_template('index.html', currencyCodes=get_currencyCodes(), conversionResult=resultString)
     else:
-        return render_template('index.html', currencyCodes=currencyCodes)
-
-
-def conversion(amount, fromCurrency, toCurrency):
-    return round(amount * (toCurrency/fromCurrency), 3)
+        return render_template('index.html', currencyCodes=get_currencyCodes())
 
 
 if __name__ == "__main__":
