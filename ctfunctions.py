@@ -4,6 +4,9 @@ import requests
 json_request = requests.get(
     'https://api.exchangeratesapi.io/latest').json()
 
+json_request_historic = requests.get(
+    'https://api.exchangeratesapi.io/history', params=parameters).json()
+
 # Functions to retreive information from Json requests
 
 
