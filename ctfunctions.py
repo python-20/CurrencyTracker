@@ -10,7 +10,7 @@ json_request = requests.get(
 def get_currencyCodes():
     currencyCodes = [c for c in json_request['rates'].keys()]
     currencyCodes.append(json_request['base'])
-    return sorted(currencyCodes)
+    return sorted(zip(currencyCodes, currencyCodes))
 
 
 def get_rate(code):
@@ -40,4 +40,4 @@ def conversion(amount, fromCurrency, toCurrency):
     toCurrencyRate = get_rate(toCurrency)
     if (fromCurrency == toCurrency):
         return amount
-    return round(amount * (toCurrencyRate/fromCurrencyRate), 2)
+    return round(amount * (toCurrencyRate / fromCurrencyRate), 2)
