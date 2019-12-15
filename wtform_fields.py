@@ -6,10 +6,7 @@ from ctfunctions import get_currencyCodes
 
 
 class ConversionForm(FlaskForm):
-    # static string for testing
-    # CURRENCY_CODES = [('AUD', 'AUD'), ('CNY', 'CNY'),
-    #                  ('EUR', 'EUR'), ('USD', 'USD')]
-    CURRENCY_CODES = get_currencyCodes
+    CURRENCY_CODES = get_currencyCodes()
 
     amount = StringField('amount_input', validators=[
         InputRequired(message="Amount required"),

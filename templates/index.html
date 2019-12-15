@@ -3,13 +3,13 @@
 {% block title %}Currency Converter/Tracker{% endblock %}
 
 {% block body %}
-<H1>Test</H1>
+
 <form name="userInput" method="POST">
     <label for="amount">amount: </label>
     {{ form.amount }}
-    {{ form.fromCurrencyDropDown }}
+    {{ form.fromCurrencyCodeDropdown }}
     to
-    {{ form.toCurrencyDropDown }}
+    {{ form.toCurrencyCodeDropdown }}
     {{ form.submit }}
     {{ form.csrf_token }}
 </form>
