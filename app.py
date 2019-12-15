@@ -18,20 +18,15 @@ app.config['SECRET_KEY'] = SECRET_KEY
 @app.route('/index.html')
 def index():
     conversion_form = ConversionForm()
-    # need to change this block to something like this
-    # if request.method == 'POST':
-    #    amount = conversion_form.amount.data
-    #    fromCurrency = conversion_form.fromCurrencyCodeDropdown.data
-    #    toCurrency = conversion_form.toCurrencyCodeDropdown.data
+
     if request.method == 'POST':
-        amount = float(request.form['amount'])
-        fromCurrency = request.form['fromCurrency']
-        toCurrency = request.form['toCurrency']
+        amount = float(conversion_form.amount.data)
+        fromCurrency = conversion_form.fromCurrencyCodeDropdown.data
+        toCurrency = conversion_form.toCurrencyCodeDropdown.data
 
         resultString = f"{amount} {fromCurrency} = {conversion(amount,fromCurrency,toCurrency)} {toCurrency} "
-        return render_template('index.html', currencyCodes=get_currencyCodes(), conversionResult=resultString)
+        return render_template('index.html', form=conversion_form, conversionResult=resultString)
     else:
-        # return render_template('index.html', currencyCodes=get_currencyCodes())
         return render_template('index.html', form=conversion_form)
 
 
