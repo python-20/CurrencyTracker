@@ -1,3 +1,6 @@
 <div id="result_div">
     {{conversionResult}}
+    {% if plot %}
+        <p><img src={{plot}} alt="Historic Rate Graph"></p>
+    {% endif %}
 </div>
