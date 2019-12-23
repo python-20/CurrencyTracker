@@ -3,21 +3,15 @@
 {% block title %}Currency Converter/Tracker{% endblock %}
 
 {% block body %}
+
 <form name="userInput" method="POST">
     <label for="amount">amount: </label>
-    <input name="amount" type="text">
-    <select name="fromCurrency">
-        {% for code in currencyCodes %}
-        <option value="{{code}}">{{code}}</option>
-        {% endfor %}
-    </select>
+    {{ form.amount }}
+    {{ form.fromCurrencyCodeDropdown }}
     to
-    <select name="toCurrency">
-        {% for code in currencyCodes %}
-        <option value="{{code}}">{{code}}</option>
-        {% endfor %}
-    </select>
-    <input type="submit" name="submit"></input>
+    {{ form.toCurrencyCodeDropdown }}
+    {{ form.submit }}
+    {{ form.csrf_token }}
 </form>
 
 {% include 'result.html' %}
