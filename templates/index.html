@@ -4,14 +4,23 @@
 
 {% block body %}
 
-<form name="userInput" method="POST">
-    <label for="amount">amount: </label>
-    {{ form.amount }}
-    {{ form.fromCurrencyCodeDropdown }}
-    to
-    {{ form.toCurrencyCodeDropdown }}
-    {{ form.submit }}
-    {{ form.csrf_token }}
+<form name="userInput" method="POST" class="form-inline">
+    <table class="table-sm">
+        <td><label for="amount">amount: </label></td>
+        <td>{{ form.amount }}</td>
+        <td>{{ form.fromCurrencyCodeDropdown }}</td>
+        <td>to</td>
+        <td>{{ form.toCurrencyCodeDropdown }}</td>
+        <td>{{ form.submit }}</td>
+        {{ form.csrf_token }}
+    </table>
+
+
+
+
+
+
+
 </form>
 
 {% include 'result.html' %}

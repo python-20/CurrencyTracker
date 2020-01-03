@@ -1,6 +1,12 @@
-<div id="result_div">
-    {{conversionResult}}
-    {% if plot %}
+<div id="result_div" class="container">
+
+    <div class="h3 row justify-content-center">
+        {{conversionResult}}
+    </div>
+    <div class="row justify-content-center">
+        {% if plot %}
         <p><img src={{plot}} alt="Historic Rate Graph"></p>
-    {% endif %}
+        {% endif %}
+    </div>
+
 </div>

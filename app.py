@@ -2,6 +2,8 @@ import os
 from flask import Flask, render_template, request
 import requests
 from datetime import date, timedelta
+
+
 from ctfunctions import get_currencyCodes, conversion
 import pfunctions
 from wtform_fields import ConversionForm
@@ -32,8 +34,9 @@ def index():
         toCurrency = conversion_form.toCurrencyCodeDropdown.data
 
         resultString = f"{amount} {fromCurrency} = {conversion(amount,fromCurrency,toCurrency)} {toCurrency} "
-        
-        plotting_graph = pfunctions.parse_plot(default_historic_days, fromCurrency, toCurrency)
+
+        plotting_graph = pfunctions.parse_plot(
+            default_historic_days, fromCurrency, toCurrency)
         return render_template('index.html', form=conversion_form, conversionResult=resultString, plot=plotting_graph)
     else:
         return render_template('index.html', form=conversion_form)
