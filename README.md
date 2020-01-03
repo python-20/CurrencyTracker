@@ -32,7 +32,7 @@ API does not provide data for weekends.
 
 # Authors
 
-* **Cheryl Murphy** - *Initial work* - [cherylli](https://github.com/cherylli)
+* **Cheryl Murphy** - [cherylli](https://github.com/cherylli)
 
 # License
 
