@@ -1,10 +1,48 @@
 #result_div{
-  color:#48d1cc  
+  color:black;
+  padding-top: 20px;
+}
+
+html{
+  font-family: 'Lato', sans-serif;
+}
+
+body{
+  display: flex;
+  flex-wrap: wrap;
 }
 
 #title{
-    background-color: #48d1cc;
-    color: #726fde;
+    width: 100%;
+    background-color: black;
+    color: white;
     padding: 2em 0 2em 0;
     margin-bottom: 1em;
+    padding: 30px;
+    text-align: center;
+}
+
+#title a{
+  color: white;
+  text-decoration: none;
+  
+}
+
+h4{
+  color: #ccc;
+  font-weight: 400;
+  text-align: right;
+}
+
+.conversion-form{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row ;
+  align-items: center;
+  justify-content: center;
+}
+
+.conversion-form li{
+  list-style: none;  
+  padding: 5px;
 }
